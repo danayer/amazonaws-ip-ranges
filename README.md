@@ -21,6 +21,8 @@ result.
 | Melbicom | RIPE Stat – AS51167 |
 | FranTech / BuyVM | RIPE Stat – AS53667 |
 | Contabo | RIPE Stat – AS40021 |
+| Akamai | RIPE Stat – AS20940, AS16625, AS63949 |
+| CDN77 | RIPE Stat – AS60068 |
 
 ## Output files
 

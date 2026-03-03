@@ -15,6 +15,8 @@ Supported providers:
   - Melbicom (via ASN)
   - FranTech/BuyVM (via ASN)
   - Contabo (via ASN)
+  - Akamai (via ASN)
+  - CDN77 (via ASN)
 """
 
 import ipaddress
@@ -61,6 +63,8 @@ PROVIDERS_ASN = {
     "melbicom": ["AS51167"],
     "frantech_buyvm": ["AS53667"],
     "contabo": ["AS40021"],
+    "akamai": ["AS20940", "AS16625", "AS63949"],
+    "cdn77": ["AS60068"],
 }
 
 REQUEST_TIMEOUT = 30
