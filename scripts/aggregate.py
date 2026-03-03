@@ -72,6 +72,7 @@ def fetch_ru_networks():
             continue
         try:
             if addr_type == "ipv4":
+                # IPv4: parts[4] is host count
                 start = ipaddress.IPv4Address(parts[3])
                 count = int(parts[4])
                 end = ipaddress.IPv4Address(int(start) + count - 1)
@@ -79,6 +80,7 @@ def fetch_ru_networks():
                     ipaddress.summarize_address_range(start, end)
                 )
             elif addr_type == "ipv6":
+                # IPv6: parts[4] is prefix length
                 prefix = f"{parts[3]}/{parts[4]}"
                 ru_v6.append(ipaddress.ip_network(prefix, strict=False))
         except (ValueError, TypeError, OverflowError):
@@ -158,7 +160,7 @@ def read_prefixes(filepath):
     networks = []
     errors = 0
     with open(filepath, "r") as fh:
-        for line in fh:
+        for lineno, line in enumerate(fh, 1):
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
@@ -166,6 +168,7 @@ def read_prefixes(filepath):
                 networks.append(ipaddress.ip_network(line, strict=False))
             except ValueError:
                 errors += 1
+                print(f"  Invalid CIDR on line {lineno}: {line}")
     if errors:
         print(f"  Skipped {errors} invalid entries")
     return networks
