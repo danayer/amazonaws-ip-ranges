@@ -64,7 +64,7 @@ PROVIDERS_ASN = {
 }
 
 REQUEST_TIMEOUT = 30
-RIPE_DELAY = 1  # seconds between RIPE API calls
+RIPE_DELAY = 1  # seconds between RIPE API calls to avoid rate limiting
 
 
 def fetch_url(url):
@@ -73,7 +73,7 @@ def fetch_url(url):
         try:
             req = urllib.request.Request(
                 url,
-                headers={"User-Agent": "amazonaws-ip-ranges/1.0"},
+                headers={"User-Agent": "cloud-ip-aggregator/1.0"},
             )
             with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
                 return resp.read().decode("utf-8")
