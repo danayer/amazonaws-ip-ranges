@@ -35,3 +35,16 @@ result.
 ```bash
 python scripts/fetch_and_aggregate.py
 ```
+
+## Standalone IPv4 aggregation
+
+Re-aggregate `ip-ranges-v4.txt` without fetching new data.  Uses
+`ipaddress.collapse_addresses()` so **no foreign IPs are added**.
+
+```bash
+# Re-aggregate the default file in-place
+python scripts/aggregate_v4.py
+
+# Custom input/output
+python scripts/aggregate_v4.py input.txt output.txt
+```
