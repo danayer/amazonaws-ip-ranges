@@ -21,6 +21,8 @@ result.
 | Melbicom | RIPE Stat – AS51167 |
 | FranTech / BuyVM | RIPE Stat – AS53667 |
 | Contabo | RIPE Stat – AS40021 |
+| Akamai | RIPE Stat – AS20940, AS16625, AS63949 |
+| CDN77 | RIPE Stat – AS60068 |
 
 ## Output files
 
@@ -34,4 +36,23 @@ result.
 
 ```bash
 python scripts/fetch_and_aggregate.py
+```
+
+## Standalone IPv4 aggregation
+
+Re-aggregate `ip-ranges-v4.txt` without fetching new data.  Uses
+`ipaddress.collapse_addresses()` so **no foreign IPs are added**.
+
+By default the script fetches Russian (RU) IPv4 allocations from RIPE NCC
+delegated statistics and removes any overlapping prefixes from the output.
+
+```bash
+# Re-aggregate the default file in-place (with RU filtering)
+python scripts/aggregate_v4.py
+
+# Custom input/output
+python scripts/aggregate_v4.py input.txt output.txt
+
+# Skip RU filtering
+python scripts/aggregate_v4.py --skip-ru-filter
 ```
