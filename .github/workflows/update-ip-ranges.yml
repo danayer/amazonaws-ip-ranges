@@ -23,6 +23,9 @@ jobs:
       - name: Fetch and aggregate IP ranges
         run: python scripts/fetch_and_aggregate.py
 
+      - name: Aggregate IPv4 without Russian ranges
+        run: python scripts/aggregate_v4.py
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
