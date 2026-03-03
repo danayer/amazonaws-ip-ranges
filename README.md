@@ -38,21 +38,21 @@ result.
 python scripts/fetch_and_aggregate.py
 ```
 
-## Standalone IPv4 aggregation
+## Aggressive aggregation
 
-Re-aggregate `ip-ranges-v4.txt` without fetching new data.  Uses
-`ipaddress.collapse_addresses()` so **no foreign IPs are added**.
+Re-aggregate `ip-ranges-v4.txt` and `ip-ranges-v6.txt` without fetching new
+data.  Goes beyond `ipaddress.collapse_addresses()` by applying iterative
+supernetting — nearby CIDR blocks are merged into larger supernets when they
+cover ≥ 50 % of the parent prefix.
 
-By default the script fetches Russian (RU) IPv4 allocations from RIPE NCC
-delegated statistics and removes any overlapping prefixes from the output.
+By default the script fetches Russian (RU) IPv4 **and** IPv6 allocations from
+RIPE NCC delegated statistics and removes any overlapping prefixes from the
+output.
 
 ```bash
-# Re-aggregate the default file in-place (with RU filtering)
-python scripts/aggregate_v4.py
-
-# Custom input/output
-python scripts/aggregate_v4.py input.txt output.txt
+# Re-aggregate in-place (with RU filtering)
+python scripts/aggregate.py
 
 # Skip RU filtering
-python scripts/aggregate_v4.py --skip-ru-filter
+python scripts/aggregate.py --skip-ru-filter
 ```
