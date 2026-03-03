@@ -41,10 +41,16 @@ python scripts/fetch_and_aggregate.py
 Re-aggregate `ip-ranges-v4.txt` without fetching new data.  Uses
 `ipaddress.collapse_addresses()` so **no foreign IPs are added**.
 
+By default the script fetches Russian (RU) IPv4 allocations from RIPE NCC
+delegated statistics and removes any overlapping prefixes from the output.
+
 ```bash
-# Re-aggregate the default file in-place
+# Re-aggregate the default file in-place (with RU filtering)
 python scripts/aggregate_v4.py
 
 # Custom input/output
 python scripts/aggregate_v4.py input.txt output.txt
+
+# Skip RU filtering
+python scripts/aggregate_v4.py --skip-ru-filter
 ```
