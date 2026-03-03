@@ -101,8 +101,6 @@ def subtract_ru(networks, ru_networks):
             elif excl.subnet_of(net):
                 new_result.extend(net.address_exclude(excl))
                 removed_count += 1
-            else:
-                new_result.append(net)
         result = new_result
 
     if removed_count:
